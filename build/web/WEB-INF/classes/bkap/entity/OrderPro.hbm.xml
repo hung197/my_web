@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 26, 2020 8:40:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bkap.entity.OrderPro" table="OrderPro" schema="dbo" catalog="Mobile_Selling" optimistic-lock="version">
+        <id name="orderId" type="int">
+            <column name="OrderId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="shipType" class="bkap.entity.ShipType" lazy="false" fetch="select">
+            <column name="ShipId" />
+        </many-to-one>
+        <many-to-one name="users" class="bkap.entity.Users" lazy="false" fetch="select">
+            <column name="UserId" />
+        </many-to-one>
+        <property name="created" type="date">
+            <column name="Created" length="10" />
+        </property>
+        <property name="totalAmount" type="java.lang.Integer">
+            <column name="TotalAmount" />
+        </property>
+        <property name="orderDetail" type="string">
+            <column name="OrderDetail" />
+        </property>
+        <property name="orderStatus" type="java.lang.Boolean">
+            <column name="OrderStatus" />
+        </property>
+        <set name="orderDetails" table="OrderDetail" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="OrderId" not-null="true" />
+            </key>
+            <one-to-many class="bkap.entity.OrderDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

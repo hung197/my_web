@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 26, 2020 8:40:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bkap.entity.ShipType" table="ShipType" schema="dbo" catalog="Mobile_Selling" optimistic-lock="version">
+        <id name="shipId" type="int">
+            <column name="ShipId" />
+            <generator class="identity" />
+        </id>
+        <property name="shipName" type="string">
+            <column name="ShipName" />
+        </property>
+        <property name="fees" type="java.lang.Float">
+            <column name="Fees" precision="53" scale="0" />
+        </property>
+        <property name="shipStatus" type="java.lang.Boolean">
+            <column name="ShipStatus" />
+        </property>
+        <set name="orderPros" table="OrderPro" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="ShipId" />
+            </key>
+            <one-to-many class="bkap.entity.OrderPro" />
+        </set>
+    </class>
+</hibernate-mapping>

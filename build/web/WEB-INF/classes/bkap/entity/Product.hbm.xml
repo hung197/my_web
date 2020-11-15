@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 26, 2020 8:40:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="bkap.entity.Product" table="Product" schema="dbo" catalog="Mobile_Selling" optimistic-lock="version">
+        <id name="productId" type="int">
+            <column name="ProductId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="category" class="bkap.entity.Category" lazy="false" fetch="select">
+            <column name="CategoryId" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="ProductName" />
+        </property>
+        <property name="title" type="string">
+            <column name="Title" />
+        </property>
+        <property name="descriptions" type="string">
+            <column name="Descriptions" />
+        </property>
+        <property name="productStatus" type="java.lang.Boolean">
+            <column name="ProductStatus" />
+        </property>
+        <set name="productDetails" table="ProductDetail" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="ProductId" />
+            </key>
+            <one-to-many class="bkap.entity.ProductDetail" />
+        </set>
+    </class>
+</hibernate-mapping>
